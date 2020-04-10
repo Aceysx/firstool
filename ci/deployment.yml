@@ -1,0 +1,63 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: tws-notification
+  namespace: APP_NAMESPACE
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      k8s-app: tws-notification
+  template:
+    metadata:
+      namespace: APP_NAMESPACE
+      labels:
+        k8s-app: tws-notification
+    spec:
+      containers:
+      - image: 52.80.132.54/tws/tws-notification-web:DOCKER_VERSION
+        name: tws-notification
+        env:
+        - name: APP_VERSION
+          value: DOCKER_VERSION
+        ports:
+        - containerPort: 80
+      - image: 52.80.132.54/tws/tws-notification-api:DOCKER_VERSION
+        name: tws-notification-api
+        env:
+        - name: APP_VERSION
+          value: DOCKER_VERSION
+        - name: SPRING_PROFILES_ACTIVE
+          value: APP_NAMESPACE
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8087
+            scheme: HTTP
+          initialDelaySeconds: 60 ## equals to the maximum startup time of the application + couple of seconds
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8087
+            scheme: HTTP
+      imagePullSecrets:
+      - name: IMAGE_PULL_SECRETS
+---
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: APP_NAMESPACE
+  name: tws-notification
+spec:
+  selector:
+    k8s-app: tws-notification
+  ports:
+  - port: 80
+    protocol: TCP
