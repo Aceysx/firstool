@@ -3,8 +3,8 @@ import { EuiPage, EuiPageBody, EuiPageContent, EuiPageContentBody, EuiPageHeader
 import Header from './header'
 
 const FirstoolLayout = (props) => {
-  return <div style={{ height: '980px', overflowY: 'hidden' }}>
-    <EuiPage style={{ height: '100%' }}>
+  return <div>
+    <EuiPage style={{ minHeight: '700px', overflowY: 'hidden' }}>
       <EuiPageBody component="div">
         <EuiPageHeader>
           <Header/>

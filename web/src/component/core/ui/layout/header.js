@@ -21,7 +21,8 @@ const Header = () => {
   })
 
   return (
-    <EuiHeader style={{ width: '100%', padding: '0 10px' }}>
+    <EuiHeader position='fixed'
+               style={{ width: '100%', padding: '0 10px' }}>
       <EuiHeaderSectionItem border="none">
         <EuiHeaderLogo href="#"/>
       </EuiHeaderSectionItem>
@@ -31,7 +32,7 @@ const Header = () => {
           isActive={state.active === menus.MY_PACKET}
           onClick={() => setState({ active: menus.MY_PACKET })}
         >
-          我的包包
+          工作台
         </EuiHeaderLink>
         <EuiHeaderLink
           href="#"
