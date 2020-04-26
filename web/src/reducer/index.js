@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
 import settings from './settings'
-import stickerLabels from '../component/sticker-search/reducer/sticker-labels'
+import stickers from '../component/kit-sticker-search/reducer/stickers'
 
 export default combineReducers({
-  stickerLabels,
+  stickerLabels: stickers,
   settings,
 })

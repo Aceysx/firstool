@@ -1,13 +1,12 @@
 const init = [
   // {
   //   title: '',
-  //   color: '',
   //   url: ''
   // }
 ]
 
 export default (state = init, action) => {
-  if (action.type === 'GET_STICKER_HOT_LABELS') {
+  if (action.type === 'GET_STICKERS') {
     return action.data
   } else { return state }
 }

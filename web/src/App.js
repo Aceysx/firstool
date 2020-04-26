@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import KitIndex from './component/core/ui/kit'
-import StickerIndex from './component/sticker-search/index'
+import StickerIndex from './component/kit-sticker-search/index'
 import FistoolLayout from './component/core/ui/layout'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import '@elastic/eui/dist/eui_theme_light.css'

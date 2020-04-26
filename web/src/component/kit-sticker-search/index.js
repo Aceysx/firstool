@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useMappedState } from 'redux-react-hook'
-import { EuiFieldSearch, EuiFlexGroup, EuiSpacer } from '@elastic/eui'
-import LabelBox from './label-box'
-import { getHotSearch } from './action/sticker'
+import { EuiFieldSearch, EuiFlexGroup, EuiFlexItem, EuiSpacer } from '@elastic/eui'
+import TickerListBox from './ticker-list-box'
+import * as sticker from './action/sticker'
 
 const StickerIndex = (props) => {
   const [state, setState] = useState({
@@ -16,30 +16,31 @@ const StickerIndex = (props) => {
 
   const dispatch = useDispatch()
 
+  const searchStickers = keyword => {
+  }
+
   useEffect(() => {
-    dispatch(getHotSearch())
+    dispatch(sticker.getRandomStickers())
   }, [])
 
-  const { stickerLabels } = propsMerge
-  console.log(stickerLabels)
+  const { stickerLabels: stickers } = propsMerge
   return <div>
     <div style={{ height: 50 }}>nav</div>
     <EuiFlexGroup justifyContent="center">
-      <EuiFieldSearch
-        style={{ height: 50, minWidth: 500 }}
-        placeholder="Search this"
-        onChange={() => {}}
-        isClearable
-      />
+      <EuiFlexItem grow={false}>
+        <EuiFieldSearch
+          style={{ height: 50, minWidth: 500 }}
+          placeholder="Search this"
+          onSearch={searchStickers}
+          isClearable
+        />
+      </EuiFlexItem>
     </EuiFlexGroup>
     <EuiSpacer size="xxl"/>
     <EuiSpacer size="xxl"/>
-    <EuiFlexGroup justifyContent="center">
-      <div style={{ width: '80%' }}>
-        <LabelBox
-          labels={stickerLabels}/>
-      </div>
-    </EuiFlexGroup>
+    <TickerListBox
+      searchSticker={searchStickers}
+      stickers={stickers}/>
     {/*<EuiImage*/}
     {/*  size="s"*/}
     {/*  hasShadow*/}

@@ -8,7 +8,6 @@ import reducer from './reducer'
 import App from './App'
 
 import './style/index.css'
-
 const store = createStore(reducer, applyMiddleware(thunkMiddleware))
 
 ReactDOM.render(
@@ -16,3 +15,4 @@ ReactDOM.render(
     <App />
   </StoreContext.Provider>,
   document.getElementById('root'))
+

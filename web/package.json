@@ -17,8 +17,7 @@
     "redux-react-hook": "^3.3.2",
     "redux-thunk": "^2.3.0"
   },
-  "homepage": "./",
-  "proxy": "http://localhost:8080",
+  "proxy":  "http://localhost:4000",
   "scripts": {
     "start": "PORT=3000  react-app-rewired start",
     "build": "react-app-rewired build",

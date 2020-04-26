@@ -1,4 +1,4 @@
-import HTTP_METHOD from './httpMethod'
+import HTTP_METHOD from './method'
 
 const getHeaderFromLocalStorage = (key) => {
   return window.localStorage.getItem(key)
@@ -18,6 +18,7 @@ export const get = async (url) => {
     })
 
     const body = await res.json()
+    const status = res.status
     return Object.assign({}, { body }, { status })
 
   } catch (ex) {
